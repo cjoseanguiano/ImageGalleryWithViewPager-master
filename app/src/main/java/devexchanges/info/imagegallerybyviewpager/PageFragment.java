@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class PageFragment extends Fragment {
 
@@ -38,23 +39,26 @@ public class PageFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ImageView imageView = (ImageView) view.findViewById(R.id.image);
+        ImageView imageView = (ImageView) view.findViewById(R.id.imageViewPager);
 
         BitmapFactory.Options o = new BitmapFactory.Options();
+        o.inJustDecodeBounds = true;
         o.inSampleSize = 4;
         o.inDither = false;
 
-        String filePath = "/storage/sdcard0/dcim/IMG_20170406_164424.jpg";
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("/storage/sdcard0/dcim/IMG_20170406_164424.jpg");
+        arrayList.add("/storage/sdcard0/dcim/IMG_20170425_181009.jpg");
 
-        File imgFile = new File(filePath);
-        if (imgFile.exists()) {
-            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-            imageView.setImageBitmap(myBitmap);
+        for (int i = 0; i < arrayList.size(); i++) {
+            File imgFile = new File(arrayList.get(i));
 
+            if (imgFile.exists()) {
+                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                imageView.setImageBitmap(myBitmap);
+            }
         }
-//
-//        bitmap = BitmapFactory.decodeResource(getResources(), imageResource, o);
-//        imageView.setImageBitmap(bitmap);
+
     }
 
     @Override

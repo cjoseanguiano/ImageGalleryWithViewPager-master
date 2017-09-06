@@ -27,15 +27,15 @@ public class MainActivity extends AppCompatActivity {
     private FragmentStatePagerAdapter adapter;
     private LinearLayout thumbnailsContainer;
     //    private final static int[] resourceIDs = new int[]{R.mipmap.a, R.mipmap.b,R.mipmap.c, R.mipmap.d, R.mipmap.e, R.mipmap.f, R.mipmap.g};
-    private final static String[] resourceIDs = new String[]{"/storage/emulated/0/WhatsApp/Media/WhatsApp Images/IMG-20170722-WA0000.jpg"};
-    private String filePath;
+//    private final static String[] resourceIDs = new String[]{"/storage/emulated/0/WhatsApp/Media/WhatsApp Images/IMG-20170722-WA0000.jpg"};
+    private ArrayList<String> resourceFile = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         images = new ArrayList<>();
-
+        resourceFile.add("/storage/sdcard0/dcim/IMG_20170406_164424.jpg");
         //find view by id
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         thumbnailsContainer = (LinearLayout) findViewById(R.id.container);
@@ -74,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setImagesData() {
-        for (int i = 0; i < resourceIDs.length; i++) {
-            images.add(resourceIDs[i]);
+        for (int i = 0; i < resourceFile.size(); i++) {
+            images.add(resourceFile.get(i));
         }
     }
 
@@ -83,26 +83,18 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < images.size(); i++) {
             View imageLayout = getLayoutInflater().inflate(R.layout.item_image, null);
             ImageView one = (ImageView) imageLayout.findViewById(R.id.img_thumb);
-            ImageView two = (ImageView) imageLayout.findViewById(R.id.newThumb);
-            two.setOnClickListener(onChagePageClickListener(i));
+            one.setOnClickListener(onChagePageClickListener(i));
             options = new BitmapFactory.Options();
             options.inSampleSize = 3;
             options.inDither = false;
 
-            filePath = "/storage/sdcard0/dcim/IMG_20170406_164424.jpg";
 
-            File imgFile = new File(filePath);
+            File imgFile = new File(resourceFile.get(i));
             if (imgFile.exists()) {
                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-                two.setImageBitmap(myBitmap);
                 one.setImageBitmap(myBitmap);
 
             }
-
-
-//            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), images.get(i), options );
-//            imageView.setImageBitmap(bitmap);
-//            imageView.setImageBitmap(bitmap);
             thumbnailsContainer.addView(imageLayout);
         }
     }
