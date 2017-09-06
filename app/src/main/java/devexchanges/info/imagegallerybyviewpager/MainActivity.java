@@ -3,6 +3,7 @@ package devexchanges.info.imagegallerybyviewpager;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -13,6 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import com.bumptech.glide.Glide;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -35,7 +38,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         images = new ArrayList<>();
+
         resourceFile.add("/storage/sdcard0/dcim/IMG_20170406_164424.jpg");
+        resourceFile.add("/storage/sdcard0/dcim/IMG_20170425_181009.jpg");
         //find view by id
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         thumbnailsContainer = (LinearLayout) findViewById(R.id.container);
@@ -89,12 +94,12 @@ public class MainActivity extends AppCompatActivity {
             options.inDither = false;
 
 
-            File imgFile = new File(resourceFile.get(i));
-            if (imgFile.exists()) {
-                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-                one.setImageBitmap(myBitmap);
 
-            }
+            Uri uri = Uri.parse(resourceFile.get(i));
+            Glide.with(this)
+                    .load(new File(uri.getPath()))
+                    .into(one);
+
             thumbnailsContainer.addView(imageLayout);
         }
     }
