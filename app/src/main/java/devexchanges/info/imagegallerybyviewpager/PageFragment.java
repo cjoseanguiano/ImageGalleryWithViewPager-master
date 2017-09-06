@@ -1,11 +1,12 @@
 package devexchanges.info.imagegallerybyviewpager;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +15,12 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class PageFragment extends Fragment {
 
+    private static final String TAG = PageFragment.class.getSimpleName();
     private ArrayList<String> imageResource;
-    private Bitmap bitmap;
 
     public static PageFragment getInstance(ArrayList<String> resourceID) {
         PageFragment f = new PageFragment();
@@ -35,6 +34,7 @@ public class PageFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         imageResource = getArguments().getStringArrayList("image_source");
+        Log.i(TAG, "onCreate: ");
     }
 
     @Override
@@ -45,12 +45,7 @@ public class PageFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ImageView imageView = (ImageView) view.findViewById(R.id.imageViewPager);
-
-        BitmapFactory.Options o = new BitmapFactory.Options();
-        o.inJustDecodeBounds = true;
-        o.inSampleSize = 4;
-        o.inDither = false;
+        ImageView imageView = (ImageView) view.findViewById(R.id.imager);
 
         for (int i = 0; i < imageResource.size(); i++) {
             Uri uri = Uri.parse(imageResource.get(i));
@@ -61,12 +56,4 @@ public class PageFragment extends Fragment {
 
 
     }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        bitmap.recycle();
-        bitmap = null;
-    }
-
 }

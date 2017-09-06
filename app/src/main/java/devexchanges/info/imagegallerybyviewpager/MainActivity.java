@@ -1,7 +1,6 @@
 package devexchanges.info.imagegallerybyviewpager;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -29,8 +28,6 @@ public class MainActivity extends AppCompatActivity {
     private View btnNext, btnPrev;
     private FragmentStatePagerAdapter adapter;
     private LinearLayout thumbnailsContainer;
-    //    private final static int[] resourceIDs = new int[]{R.mipmap.a, R.mipmap.b,R.mipmap.c, R.mipmap.d, R.mipmap.e, R.mipmap.f, R.mipmap.g};
-//    private final static String[] resourceIDs = new String[]{"/storage/emulated/0/WhatsApp/Media/WhatsApp Images/IMG-20170722-WA0000.jpg"};
     private ArrayList<String> resourceFile = new ArrayList<>();
 
     @Override
@@ -41,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
 
         resourceFile.add("/storage/sdcard0/dcim/IMG_20170406_164424.jpg");
         resourceFile.add("/storage/sdcard0/dcim/IMG_20170425_181009.jpg");
+        resourceFile.add("/storage/sdcard0/dcim/IMG_20170425_181005.jpg");
+        resourceFile.add("/storage/sdcard0/dcim/IMG_20170406_164430.jpg");
+
         //find view by id
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         thumbnailsContainer = (LinearLayout) findViewById(R.id.container);

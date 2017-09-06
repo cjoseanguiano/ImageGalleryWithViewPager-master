@@ -5,8 +5,7 @@
     tools:context="devexchanges.info.imagegallerybyviewpager.PageFragment">
 
    <ImageView
-       android:id="@+id/imageViewPager"
-
+       android:id="@+id/imager"
        android:layout_width="match_parent"
        android:contentDescription="@string/app_name"
        android:layout_height="match_parent" />
