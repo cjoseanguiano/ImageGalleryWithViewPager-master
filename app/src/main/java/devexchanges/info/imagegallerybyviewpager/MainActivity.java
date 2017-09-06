@@ -1,27 +1,37 @@
 package devexchanges.info.imagegallerybyviewpager;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.bumptech.glide.Glide;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ArrayList<Integer> images;
+    private static final String TAG = MainActivity.class.getSimpleName();
+    private ArrayList<String> images;
     private BitmapFactory.Options options;
     private ViewPager viewPager;
     private View btnNext, btnPrev;
     private FragmentStatePagerAdapter adapter;
     private LinearLayout thumbnailsContainer;
-    private final static int[] resourceIDs = new int[]{R.mipmap.a, R.mipmap.b,
-            R.mipmap.c, R.mipmap.d, R.mipmap.e, R.mipmap.f, R.mipmap.g};
+//    private final static int[] resourceIDs = new int[]{R.mipmap.a, R.mipmap.b,R.mipmap.c, R.mipmap.d, R.mipmap.e, R.mipmap.f, R.mipmap.g};
+    private final static String[] resourceIDs = new String[]{"/storage/emulated/0/WhatsApp/Media/WhatsApp Images/IMG-20170722-WA0000.jpg"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,16 +85,27 @@ public class MainActivity extends AppCompatActivity {
     private void inflateThumbnails() {
         for (int i = 0; i < images.size(); i++) {
             View imageLayout = getLayoutInflater().inflate(R.layout.item_image, null);
-            ImageView imageView = (ImageView) imageLayout.findViewById(R.id.img_thumb);
-            imageView.setOnClickListener(onChagePageClickListener(i));
+//            ImageView imageView = (ImageView) imageLayout.findViewById(R.id.img_thumb);
+            ImageView newimageView = (ImageView) imageLayout.findViewById(R.id.newThumb);
+            newimageView.setOnClickListener(onChagePageClickListener(i));
             options = new BitmapFactory.Options();
             options.inSampleSize = 3;
             options.inDither = false;
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), images.get(i), options );
-            imageView.setImageBitmap(bitmap);
-            //set to image view
-            imageView.setImageBitmap(bitmap);
-            //add imageview
+            Uri imageUri = Uri.parse("/storage/emulated/0/WhatsApp/Media/WhatsApp Images/IMG-20170722-WA0000.jpg");
+            Bitmap bitmap = null;
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Glide.with(this)
+                    .load(imageUri)
+                    .into(newimageView);
+
+
+            //            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), Integer.parseInt("a"), options );
+            newimageView.setImageBitmap(bitmap);
             thumbnailsContainer.addView(imageLayout);
         }
     }
@@ -96,5 +117,33 @@ public class MainActivity extends AppCompatActivity {
                 viewPager.setCurrentItem(i);
             }
         };
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        menu.clear();
+        MenuItem item = menu.add(Menu.NONE, R.id.crop_image_menu_crop, Menu.NONE, R.string.crop_image_menu_crop);
+        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        item.setIcon(R.drawable.crop);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.crop_image_menu_crop:
+                Log.i(TAG, "onOptionsItemSelected: ");
+                Intent intent = new Intent(this,OtraActivity.class);
+                startActivity(intent);
+                return true;
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
     }
 }

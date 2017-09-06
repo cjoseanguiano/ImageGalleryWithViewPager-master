@@ -14,10 +14,10 @@ public class PageFragment extends Fragment {
     private int imageResource;
     private Bitmap bitmap;
 
-    public static PageFragment getInstance(int resourceID) {
+    public static PageFragment getInstance(String resourceID) {
         PageFragment f = new PageFragment();
         Bundle args = new Bundle();
-        args.putInt("image_source", resourceID);
+        args.putString("image_source", resourceID);
         f.setArguments(args);
         return f;
     }
