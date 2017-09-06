@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="mute_item" type="id" />
+    <item name="unmute_item" type="id" />
+    <item name="autodestruction_item" type="id" />
+    <item name="upload_log_item" type="id" />
+    <item name="uploads_history" type="id" />
+    <item name="new_group" type="id" />
+    <item name="edit_group" type="id" />
+    <item name="create_group" type="id" />
+    <item name="new_contacto" type="id" />
+    <item name="action_delete" type="id" />
+    <item name="action_forward" type="id" />
+    <item name="action_copy" type="id" />
+    <item name="action_info" type="id" />
+    <item name="search_chat" type="id" />
+    <item name="refreshQR" type="id" />
+    <item name="viewPagerNew" type="id"></item>
+    <item name="viewImageViewNew" type="id"></item>
+    <item name="viewImageCrop" type="id"></item>
+    <item name="videoFile" type="id"></item>
+
+</resources>

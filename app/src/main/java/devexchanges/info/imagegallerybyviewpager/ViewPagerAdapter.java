@@ -2,11 +2,7 @@ package devexchanges.info.imagegallerybyviewpager;
 
 import android.app.Activity;
 import android.content.Context;
-import android.net.Uri;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +13,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
 class PhotoViewerAdapter extends PagerAdapter {
     private static final int MAX_WIDTH = 150;
@@ -105,9 +99,8 @@ class PhotoViewerAdapter extends PagerAdapter {
 
 //        File thumbnailFile = AndroidUtilities.createImageThumbnail(localPath);
 
-        Uri uri = Uri.parse("/storage/sdcard0/dcim/IMG_20170406_164424.jpg");
         Glide.with(_activity)
-                .load(new File(uri.getPath()))
+                .load(new File(localPath))
                 .into(imgDisplay);
         container.addView(viewLayout);
 
