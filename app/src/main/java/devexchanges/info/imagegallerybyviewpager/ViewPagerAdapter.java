@@ -4,20 +4,21 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
-    private List<String> images;
+    private ArrayList<String> images;
 
-    public ViewPagerAdapter(FragmentManager fm, List<String> imagesList) {
+    public ViewPagerAdapter(FragmentManager fm, ArrayList<String> imagesList) {
         super(fm);
         this.images = imagesList;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return PageFragment.getInstance(images.get(position));
+        return PageFragment.getInstance(images);
     }
 
     @Override

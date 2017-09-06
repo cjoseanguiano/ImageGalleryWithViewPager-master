@@ -94,7 +94,6 @@ public class MainActivity extends AppCompatActivity {
             options.inDither = false;
 
 
-
             Uri uri = Uri.parse(resourceFile.get(i));
             Glide.with(this)
                     .load(new File(uri.getPath()))
