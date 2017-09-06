@@ -1,24 +1,13 @@
 package devexchanges.info.imagegallerybyviewpager;
 
-import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.NinePatch;
-import android.media.Image;
-import android.net.Uri;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.Display;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-import com.squareup.picasso.Picasso;
-
 import java.io.File;
-import java.io.IOException;
 
 public class OtraActivity extends AppCompatActivity {
 
@@ -32,7 +21,10 @@ public class OtraActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otra);
         imageView = (ImageView) findViewById(R.id.imagenula);
-        filePath = "/storage/emulated/0/WhatsApp/Media/WhatsApp Images/IMG-20170723-WA0002.jpg";
+        //Todo SAMSUNG
+        //filePath = "/storage/emulated/0/WhatsApp/Media/WhatsApp Images/IMG-20170723-WA0002.jpg";
+        //Todo LEVONO
+        filePath = "/storage/sdcard0/dcim/IMG_20170406_164424.jpg";
 
         File imgFile = new File(filePath);
         if (imgFile.exists()) {

@@ -9,9 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import java.io.File;
+
 public class PageFragment extends Fragment {
 
-    private int imageResource;
+    private String imageResource;
     private Bitmap bitmap;
 
     public static PageFragment getInstance(String resourceID) {
@@ -25,7 +27,7 @@ public class PageFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        imageResource = getArguments().getInt("image_source");
+        imageResource = getArguments().getString("image_source");
     }
 
     @Override
@@ -41,8 +43,18 @@ public class PageFragment extends Fragment {
         BitmapFactory.Options o = new BitmapFactory.Options();
         o.inSampleSize = 4;
         o.inDither = false;
-        bitmap = BitmapFactory.decodeResource(getResources(), imageResource, o);
-        imageView.setImageBitmap(bitmap);
+
+        String filePath = "/storage/sdcard0/dcim/IMG_20170406_164424.jpg";
+
+        File imgFile = new File(filePath);
+        if (imgFile.exists()) {
+            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+            imageView.setImageBitmap(myBitmap);
+
+        }
+//
+//        bitmap = BitmapFactory.decodeResource(getResources(), imageResource, o);
+//        imageView.setImageBitmap(bitmap);
     }
 
     @Override

@@ -22,14 +22,6 @@
             android:contentDescription="@string/app_name"
             android:src="@mipmap/prev" />
 
-        <ImageView
-            android:id="@+id/prevNew"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="0.1"
-            android:contentDescription="@string/app_name"
-            android:src="@mipmap/prev" />
         <android.support.v4.view.ViewPager
             android:id="@+id/view_pager"
             android:layout_width="0dp"
