@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <devexchanges.info.imagegallerybyviewpager.TouchImageView
+        android:id="@+id/imgDisplay"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:id="@+id/btnPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:background="@drawable/crop"
+        android:textColor="#ffffff"
+        android:layout_gravity="center"
+        android:contentDescription="@string/btn_play_description"/>
+
+    <ImageButton
+        android:id="@+id/btnDownload"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/crop"
+        android:textColor="#ffffff"
+        android:layout_gravity="center"
+        android:contentDescription="@string/btn_download_desc"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:indeterminate="true"
+        android:visibility="gone"
+        android:layout_gravity="center"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/crop"
+        android:visibility="gone"
+        android:contentDescription="@string/btn_download_desc"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#66000000"
+        android:layout_gravity="bottom"
+
+        >
+
+        <TextView
+            android:id="@+id/photoDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            tools:text="Foto description" />
+    </ScrollView>
+</FrameLayout>

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +20,7 @@ import com.bumptech.glide.Glide;
 import java.io.File;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener{
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private ArrayList<String> images;
@@ -52,8 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
         setImagesData();
 
-        // init viewpager adapter and attach
-        adapter = new ViewPagerAdapter(getSupportFragmentManager(), images);
+        // init viewpager adapter and attac
         viewPager.setAdapter(adapter);
 
         inflateThumbnails();
@@ -141,4 +141,21 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+
+        }
+
 }
+
